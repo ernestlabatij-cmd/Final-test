@@ -1,0 +1,20 @@
+.img-tokken{
+    width: 294px;
+    height: 288px;
+    top: 51px;
+    left: 1089px;
+}
+.header-div{
+    display: flex;
+    justify-content: space-between;
+    padding: 50px;
+}
+.city{
+    font-size: 48px;
+    style: Semi Blod;
+    width: 600px;
+}
+.temperatyr{
+    font-size: 128px;
+    font-weight: 500px;
+}

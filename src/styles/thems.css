@@ -1,0 +1,27 @@
+/* Картинка как фон вместо градиента */
+body[data-weather="sunny-day"] {
+    background-image: url('');
+    background-size: cover;          /* растянуть на весь экран */
+    background-position: center;     /* центрировать */
+    background-attachment: fixed;   /* фон не скролируется */
+    --widget-bg: rgba(255, 255, 255, 0.25);
+    --text: #000;
+}
+
+body[data-weather="rain-day"] {
+    background-image: url('');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    --widget-bg: rgba(255, 255, 255, 0.15);
+    --text: #e0e0e0;
+}
+
+body[data-weather="snow-day"] {
+    background-image: url('');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    --widget-bg: rgba(255, 255, 255, 0.3);
+    --text: #333;
+}
