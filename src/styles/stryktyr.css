@@ -1,0 +1,42 @@
+.header-first{
+    width: 330px;
+    height: 282px;
+}
+.header-second{
+    width: 330px;
+    height: 282px;
+}
+.div-three{
+    width: 330px;
+    height: 282px;
+}
+
+.first{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+
+
+}
+
+.main-fotore{
+    width: 1002px;
+    height: 262px;
+}
+
+.fotore-div{
+    display: flex;
+    justify-content: center;
+}
+
+.leaft-div{
+    width: 324px;
+    height: 574px;
+}
+
+.main{
+    display: flex;
+    justify-content: space-around;
+    gap: 70px;
+}

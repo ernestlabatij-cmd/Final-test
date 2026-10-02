@@ -18,3 +18,32 @@
     font-size: 128px;
     font-weight: 500px;
 }
+
+.heart{
+}
+
+.header-first{
+ background: rgba(113, 113, 113, 0.3);
+    border-radius: 40px;
+
+}
+
+.header-second{
+    background: rgba(113, 113, 113, 0.3);
+    border-radius: 40px;
+}
+
+.div-three{
+    background: rgba(113, 113, 113, 0.3);
+    border-radius: 40px;
+}
+
+.main-fotore{
+    background: rgba(113, 113, 113, 0.3);
+    border-radius: 40px;
+}
+
+.leaft-div{
+    background: rgba(113, 113, 113, 0.3);
+    border-radius: 40px;
+}
