@@ -1,4 +1,5 @@
 import { searchCities } from "../../services/geocoding-api.js";
+import { WeathersApi } from "../../services/weather-api.js"
 
 const input = document.querySelector("#cityChoise");
 const  resultContainer = document.querySelector("#holderChois");
@@ -15,6 +16,7 @@ input.addEventListener("keydown", async (event) => {
      }
 
      const results =  await searchCities(city);
+     const weathers = await WeathersApi()
 
      resultContainer.innerHTML = "";
 
