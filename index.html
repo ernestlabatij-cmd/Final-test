@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="src/styles/tokens.css">
     <link rel="stylesheet" href="src/components/card/card.css">
     <link rel="stylesheet" href="src/style.css">
+    <link rel="stylesheet" href="src/styles/stryktyr.css">
 </head>
 <body>
 
@@ -17,10 +18,17 @@
        <div class="header-div">
            <div class="header-left">
                <div class="front-text">
-                   <select name="CityChoice" id="CityChoice">
-                       <option value=""></option>
-                       <option value=""></option>
-                   </select>
+                  <div class="holderChois" id="holderChois">
+                      <div class="img-search2"></div>
+                    <div class="search">
+                        <input type="text"
+                               id="cityChoise"
+                               placeholder="Select a city..."
+                               autocomplete="off"
+                        >
+                    </div>
+                      <div class="img-search2"></div>
+                  </div>
                    <p class="city" id="city">qergg</p>
                    <p class="temperatyr" id="temperatyr">aegag</p>
                    <p class="day-time"  id="day-time">asgdagagag</p>
@@ -55,6 +63,7 @@
 
 </div>
 
-
+<script type="module" src="src/components/search-input/search-input.js"></script>
+<script type="module"  src="src/services/geocoding-api.js"></script>
 </body>
 </html>
