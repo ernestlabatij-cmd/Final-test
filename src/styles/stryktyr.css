@@ -16,8 +16,6 @@
     justify-content: center;
     gap: 20px;
     align-items: center;
-
-
 }
 
 .main-fotore{
@@ -40,3 +38,19 @@
     justify-content: space-around;
     gap: 70px;
 }
+
+.img-holder{
+    display: flex;
+    justify-content: center;
+    top: 70px;
+
+
+.thre-main-p{
+    text-align: center;}
+}
+
+.p-holder{
+    display: flex;
+    justify-content: center;
+}
+
