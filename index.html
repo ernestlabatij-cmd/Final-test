@@ -52,8 +52,18 @@
                          <p class="water"></p>
                      </div>
                      <div class="header-second">
-                         <img src="" alt="">
-                         <p class="waterhg"></p>
+                         <div class="barometer-title">
+                             Barometer
+                         </div>
+
+                         <div class="barometer-value">
+                             <span id="pressure">759.8</span>
+                             <span>Hg</span>
+                         </div>
+
+                         <div class="barometer-chart">
+                             <canvas id="barometerChart"></canvas>
+                         </div>
                      </div>
                     <div class="div-three">
                        <div class="p-holder">
@@ -72,7 +82,9 @@
              <br>
              <div class="fotore-div">
                  <div class="main-fotore">
+                     <p class="forecast-title">12-hour forecast</p>
 
+                     <canvas id="forecastChart"></canvas>
                  </div>
              </div>
          </div>
@@ -90,6 +102,8 @@
     </div>
 
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script type="module" src="src/components/search-input/search-input.js"></script>
 <script type="module"  src="src/services/geocoding-api.js"></script>

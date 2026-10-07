@@ -2,6 +2,9 @@
 import { searchCities } from "../../services/geocoding-api.js";
 import { weatherApi } from "../../services/weather-api.js";
 
+let forecastChart = null;
+let barometerChart = null;
+
 
 const input = document.querySelector("#cityChoise");
 const holderChois = document.querySelector("#holderChois");
@@ -61,6 +64,9 @@ input.addEventListener("keydown", async (event) => {
                 city.longitude
             );
 
+            createForecastChart(weather);
+            createBarometerChart(weather);
+
      const weatherCode = weather.current.weather_code;
 
     const weatherType = getWeatherType(weatherCode);
@@ -97,44 +103,212 @@ input.addEventListener("keydown", async (event) => {
 
         holderChois.append(cityElement);
     });
-});
 
+    function getWeatherType(weatherCode) {
 
-function getWeatherType(weatherCode) {
+        if (weatherCode === 0) {
+            return "sunny";
+        }
 
-    if (weatherCode === 0) {
-        return "sunny";
-    }
+        if (weatherCode >= 1 && weatherCode <= 3) {
+            return "cloudy";
+        }
 
-    if (weatherCode >= 1 && weatherCode <= 3) {
+        if (weatherCode === 45 || weatherCode === 48) {
+            return "fog";
+        }
+
+        if (weatherCode >= 51 && weatherCode <= 67) {
+            return "rain";
+        }
+
+        if (weatherCode >= 71 && weatherCode <= 77) {
+            return "snow";
+        }
+
+        if (weatherCode >= 80 && weatherCode <= 82) {
+            return "rain";
+        }
+
+        if (weatherCode === 85 || weatherCode === 86) {
+            return "snow";
+        }
+
+        if (weatherCode >= 95 && weatherCode <= 99) {
+            return "thunderstorm";
+        }
+
         return "cloudy";
     }
 
-    if (weatherCode === 45 || weatherCode === 48) {
-        return "fog";
+
+
+});
+
+
+function createForecastChart(weather) {
+    const canvas = document.querySelector("#forecastChart");
+
+    if (!canvas) {
+        return;
+
     }
 
-    if (weatherCode >= 51 && weatherCode <= 67) {
-        return "rain";
+    const currentTime = weather.current.time;
+
+    const startIndex = weather.hourly.time.findIndex(
+        (time) => time >= currentTime.slice(0, 13)
+    );
+
+    const index = startIndex === -1 ? 0 : startIndex;
+
+    const times = weather.hourly.time.slice(index, index + 12);
+    const temperatures = weather.hourly.temperature_2m.slice(
+        index,
+        index + 12
+    );
+
+    const labels = times.map((time) => {
+        const date = new Date(time);
+
+        return date.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    });
+
+    if (forecastChart) {
+        forecastChart.destroy();
     }
 
-    if (weatherCode >= 71 && weatherCode <= 77) {
-        return "snow";
+    const ctx = canvas.getContext("2d");
+
+    forecastChart = new Chart(ctx, {
+        type: "line",
+
+        data: {
+            labels: labels,
+
+            datasets: [
+                {
+                    data: temperatures,
+
+                    borderWidth: 2,
+
+                    tension: 0.45,
+
+                    pointRadius: 3,
+
+                    pointHoverRadius: 5,
+
+                    fill: false
+                }
+            ]
+        },
+
+        options: {
+            responsive: true,
+
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+
+            scales: {
+                x: {
+                    grid: {
+                        display: false
+                    },
+
+                    ticks: {
+                        display: true
+                    },
+
+                    border: {
+                        display: false
+                    }
+                },
+
+                y: {
+                    display: false,
+
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+function createBarometerChart(weather) {
+    const canvas = document.querySelector("#barometerChart");
+    if (!canvas) {
+        return;
     }
 
-    if (weatherCode >= 80 && weatherCode <= 82) {
-        return "rain";
+    const pressure = weather.hourly.surface_pressure.slice(0, 8);
+
+    if (barometerChart) {
+        barometerChart.destroy();
     }
 
-    if (weatherCode === 85 || weatherCode === 86) {
-        return "snow";
-    }
+    const ctx = canvas.getContext("2d");
 
-    if (weatherCode >= 95 && weatherCode <= 99) {
-        return "thunderstorm";
-    }
+    barometerChart = new Chart(ctx, {
+        type: "line",
 
-    return "cloudy";
+        data: {
+            labels: pressure.map((_, index) => index),
+
+            datasets: [
+                {
+                    data: pressure,
+
+                    borderWidth: 3,
+
+                    tension: 0.45,
+
+                    pointRadius: 6,
+
+                    fill: false
+                }
+            ]
+        },
+
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+
+            scales: {
+                x: {
+                    display: false,
+
+                    grid: {
+                        display: false
+                    }
+                },
+
+                y: {
+                    display: false,
+
+                    grid: {
+                        display: false
+                    }
+                }
+            }
+        }
+    });
 }
 
 
