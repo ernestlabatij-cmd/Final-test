@@ -4,28 +4,209 @@
     top: 51px;
     left: 1089px;
 }
+
+.img-search{
+width: 18;
+height: 25;
+top: 6px;
+left: 6px;
+opacity: 1;
+background: black;
+}
+
 .header-div{
     display: flex;
     justify-content: space-between;
     padding: 50px;
 }
+
 .city{
-    font-size: 48px;
-    style: Semi Blod;
-    width: 600px;
+position: absolute;
+width: 417px;
+height: 47px;
+left: 54px;
+top: 70px;
+font-style: normal;
+font-weight: 600;
+font-size: 48px;
+line-height: 58px;
+display: flex;
+align-items: center;
+color: #000000;
 }
+
 .temperatyr{
-    font-size: 128px;
-    font-weight: 500px;
+position: absolute;
+width: 256px;
+height: 101px;
+left: 55px;
+top: 80px;
+font-style: normal;
+font-weight: 500;
+font-size: 128px;
+line-height: 106px;
+color: #020202;
+}
+
+.day-time{
+position: absolute;
+width: 205px;
+height: 28px;
+left: 54px;
+top: 315px;
+font-style: normal;
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+color: #000000;
 }
 
 .heart{
+position: absolute;
+left: 95px;
+top: 420px;
+}
+
+.Indoor{
+position: absolute;
+width: 142px;
+height: 27px;
+left: 130px;
+top: 397px;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 29px;
+display: flex;
+align-items: center;
+color: #ffffff;
+}
+
+.img-termomether{
+position: absolute;
+left: 99px;
+top: 474px;
+}
+
+.temperatyr1{
+position: absolute;
+width: 193px;
+height: 75px;
+left: 145px;
+top: 375px;
+font-style: normal;
+font-weight: 400;
+font-size: 96px;
+line-height: 80px;
+color: #000000;
+}
+
+.img-kaplya{
+position: absolute;
+left: 99px;
+top: 590px; 
+}
+
+.Humid{
+position: absolute;
+width: 70px;
+height: 12px;
+left: 140px;
+top: 566px;
+font-style: normal;
+font-weight: 300;
+font-size: 24px;
+line-height: 86%;
+color: #000000;
+}
+
+.water{
+position: absolute;
+width: 70px;
+height: 70px;
+left: 137px;
+top: 570px;
+font-weight: 400;
+font-style: Regular;
+font-size: 48px;
+leading-trim: NONE;
+line-height: 83%;
+letter-spacing: 0%;
+}
+
+.water1{
+position: absolute;
+width: 12px;
+height: 12px;
+left: 190px;
+top: 595px;
+font-style: normal;
+font-weight: 300px;
+font-size: 24px;
+line-height: 20px;
+color: #000000;
 }
 
 .header-first{
  background: rgba(113, 113, 113, 0.3);
     border-radius: 40px;
+}
 
+.img-radar{
+position: absolute;
+width: 20px;
+height: 20px;
+left: 450px;
+top: 420px;
+}
+
+.barometer-title{
+position: absolute;
+width: 193px;
+height: 27px;
+left: 480px;
+top: 417px;
+font-style: normal;
+font-weight: 500;
+font-size: 24px;
+line-height: 29px;
+display: flex;
+align-items: center;
+color: #000000;
+}
+
+.img-kaplya1{
+position: absolute;
+width: 30px;
+height: 38px;
+left: 440px;
+top: 490px;
+}
+
+.p-barometer{
+position: absolute;
+width: 159px;
+height: 75px;
+left: 490px;
+top: 410px;
+font-style: normal;
+font-weight: 400;
+font-size: 75px;
+line-height: 83.2%;
+color: #000000;
+}
+
+.p-barometer1{
+position: absolute;
+width: 41px;
+height: 50px;
+left: 640px;
+top: 460px;
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 33px;
+color: #000000;
 }
 
 .header-second{
@@ -73,3 +254,4 @@
     width: 100% !important;
     height: 130px !important;
 }
+

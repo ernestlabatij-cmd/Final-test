@@ -205,6 +205,7 @@ function createForecastChart(weather) {
                 }
             ]
         },
+        
 
         options: {
             responsive: true,
