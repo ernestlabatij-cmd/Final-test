@@ -5,12 +5,10 @@ import { weatherApi } from "../../services/weather-api.js";
 let forecastChart = null;
 let barometerChart = null;
 
-
 const input = document.querySelector("#cityChoise");
 const holderChois = document.querySelector("#holderChois");
 
 const temperatureElement = document.querySelector("#temperatyr");
-
 const realFeel = document.querySelector("#realFeel");
 const wind = document.querySelector("#wind");
 const uvindex = document.querySelector("#uvindex");
@@ -18,8 +16,46 @@ const chanceofrain = document.getElementById("chance of rain");
 const Weather = document.querySelector("#Weather");
 
 
-input.addEventListener("keydown", async (event) => {
+function getWeatherType(weatherCode) {
+    if (weatherCode === 0) {
+        return "sunny";
+    }
 
+    if (weatherCode >= 1 && weatherCode <= 3) {
+        return "cloudy";
+    }
+
+    if (weatherCode === 45 || weatherCode === 48) {
+        return "fog";
+    }
+
+    if (weatherCode >= 51 && weatherCode <= 67) {
+        return "rain";
+    }
+
+    if (weatherCode >= 71 && weatherCode <= 77) {
+        return "snow";
+    }
+
+    if (weatherCode >= 80 && weatherCode <= 82) {
+        return "rain";
+    }
+
+    if (weatherCode === 85 || weatherCode === 86) {
+        return "snow";
+    }
+
+    if (weatherCode >= 95 && weatherCode <= 99) {
+        return "thunderstorm";
+    }
+
+    return "cloudy";
+
+
+}
+
+
+input.addEventListener("keydown", async (event) => {
     if (event.key !== "Enter") {
         return;
     }
@@ -30,34 +66,31 @@ input.addEventListener("keydown", async (event) => {
         return;
     }
 
-
     const results = await searchCities(cityName);
 
     console.log(results);
 
 
-    results.forEach((city) => {
+    holderChois
+        .querySelectorAll(".city-option")
+        .forEach((element) => {
+            element.remove();
+        });
 
+    results.forEach((city) => {
         const cityElement = document.createElement("button");
 
-        cityElement.textContent =
-            `${city.name}, ${city.country}`;
-
+        cityElement.textContent = `${city.name}, ${city.country}`;
         cityElement.classList.add("city-option");
 
-
         cityElement.addEventListener("click", async () => {
-
-            input.value =
-                `${city.name}, ${city.country}`;
-
+            input.value = `${city.name}, ${city.country}`;
 
             holderChois
                 .querySelectorAll(".city-option")
                 .forEach((element) => {
                     element.remove();
                 });
-
 
             const weather = await weatherApi(
                 city.latitude,
@@ -67,14 +100,11 @@ input.addEventListener("keydown", async (event) => {
             createForecastChart(weather);
             createBarometerChart(weather);
 
-     const weatherCode = weather.current.weather_code;
 
-    const weatherType = getWeatherType(weatherCode);
+            const weatherCode = weather.current.weather_code;
+            const weatherType = getWeatherType(weatherCode);
 
-    document.body.dataset.weather = weatherType;
-
-
-
+            document.body.dataset.weather = weatherType;
 
             console.log(weather);
 
@@ -94,64 +124,18 @@ input.addEventListener("keydown", async (event) => {
             chanceofrain.textContent =
                 `${weather.hourly.precipitation_probability[0]}%`;
 
-            Weather.textContent =
-                weatherType;
-
-
+            Weather.textContent = weatherType;
         });
-
 
         holderChois.append(cityElement);
     });
-
-    function getWeatherType(weatherCode) {
-
-        if (weatherCode === 0) {
-            return "sunny";
-        }
-
-        if (weatherCode >= 1 && weatherCode <= 3) {
-            return "cloudy";
-        }
-
-        if (weatherCode === 45 || weatherCode === 48) {
-            return "fog";
-        }
-
-        if (weatherCode >= 51 && weatherCode <= 67) {
-            return "rain";
-        }
-
-        if (weatherCode >= 71 && weatherCode <= 77) {
-            return "snow";
-        }
-
-        if (weatherCode >= 80 && weatherCode <= 82) {
-            return "rain";
-        }
-
-        if (weatherCode === 85 || weatherCode === 86) {
-            return "snow";
-        }
-
-        if (weatherCode >= 95 && weatherCode <= 99) {
-            return "thunderstorm";
-        }
-
-        return "cloudy";
-    }
-
-
-
 });
-
 
 function createForecastChart(weather) {
     const canvas = document.querySelector("#forecastChart");
 
     if (!canvas) {
         return;
-
     }
 
     const currentTime = weather.current.time;
@@ -192,15 +176,10 @@ function createForecastChart(weather) {
             datasets: [
                 {
                     data: temperatures,
-
                     borderWidth: 2,
-
                     tension: 0.45,
-
-                    pointRadius: 3,
-
+                    pointRadius: 7,
                     pointHoverRadius: 5,
-
                     fill: false
                 }
             ]
@@ -208,7 +187,6 @@ function createForecastChart(weather) {
 
         options: {
             responsive: true,
-
             maintainAspectRatio: false,
 
             plugins: {
@@ -242,11 +220,14 @@ function createForecastChart(weather) {
             }
         }
     });
+
+
 }
 
 
 function createBarometerChart(weather) {
     const canvas = document.querySelector("#barometerChart");
+
     if (!canvas) {
         return;
     }
@@ -268,13 +249,9 @@ function createBarometerChart(weather) {
             datasets: [
                 {
                     data: pressure,
-
                     borderWidth: 3,
-
                     tension: 0.45,
-
                     pointRadius: 6,
-
                     fill: false
                 }
             ]
@@ -310,6 +287,3 @@ function createBarometerChart(weather) {
         }
     });
 }
-
-
-
